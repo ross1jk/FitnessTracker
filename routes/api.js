@@ -9,6 +9,7 @@ router.post("/api/workout", ({ body }, res) => {
     .catch(err => {
         res.status(400).json(err);
     });
+    
 }); 
 
 module.exports = router; 
