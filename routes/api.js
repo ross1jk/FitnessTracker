@@ -1,15 +1,10 @@
-const router = require("express").Router();
-const Workout = require("../models/workout");
+const db = require('../models'); 
 
-router.post("/api/workout", ({ body }, res) => {
-    Workout.create(body)
-    .then(dbWorkout => {
-        res.json(dbWorkout);
-    })
-    .catch(err => {
-        res.status(400).json(err);
-    });
-    
-}); 
-
-module.exports = router; 
+module.exports = (app) => {
+    // display the workouts
+    // app.get - findAll
+    // add new 
+    // app.post - create
+    // upudate workout
+    // app.put - update 
+}
