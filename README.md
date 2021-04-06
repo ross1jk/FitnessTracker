@@ -40,9 +40,13 @@ While utilizing this application the user is able to: add exercises to the most 
 
 ### Models
 
+Inside the database there is a document created titled workoutSchemea. That is comprised of the current date, and an array to provide an exercise type and its details. A virutal is used to render the information to JSON.
+
 ## Routes
 
 ### HTML Routes
+
+There are three HTML Routes, they render the home page - '/', the stastics page - '/stats' and a page to enter in a new exercise - '/exercise'
 
 ### API Routes
 

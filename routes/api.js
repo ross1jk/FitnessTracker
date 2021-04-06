@@ -27,7 +27,7 @@ module.exports = (app) => {
         db.Workout.findByIdAndUpdate(
             req.params.id,
           { $push: { exercises: req.body } },
-          { new: true }
+          { new: true, runValidators: true }
         )
       .then(dbWorkout => {
         res.json(dbWorkout);
@@ -48,17 +48,4 @@ module.exports = (app) => {
         res.json(err);
       });
   }); 
-//   app.post("/api/workouts/range", (req, res) => {
-//     db.Workout.create({})
-//       .then((dbWorkout) => {
-//         res.json(dbWorkout);
-//       })
-//       .catch((err) => {
-//         res.json(err);
-//       });
-//   });
 };
-
-// * View the combined weight of multiple exercises from the past seven workouts on the `stats` page.
-
-// * View the total duration of each workout from the past seven workouts on the `stats` page
