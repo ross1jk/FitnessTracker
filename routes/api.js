@@ -1,7 +1,8 @@
 const db = require("../models");
 
 module.exports = (app) => {
-  // All Workouts for get last work out function
+
+  // All Workouts - will render last workout on page
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
       .then((dbWorkout) => {
@@ -12,31 +13,29 @@ module.exports = (app) => {
       });
   });
 
-  // Route to Return ID
-  // on a post method and returns a new workout
-
-  // Add new workout
-  app.post("/api/workouts", ({ body }, res) => {
-    console.log(body);
-    db.Workout.create(body).then((dbWorkout) => {
-      console.log(dbWorkout);
-      res.json(dbWorkout);
+  // Adds a new workout
+    app.post("/api/workouts", ({ body }, res) => {
+      console.log(body);
+      db.Workout.create(body).then(dbWorkout => {
+        console.log(dbWorkout);
+        res.json(dbWorkout);
+      });
     });
-  });
 
-  // Update an existing workout
-  app.post("api/workouts/:id", (req, res) => {
-      db.Workout.findOneAndUpdate(
-          {
-              id: mongojs.ObjectId(req.params.id)
-          },
-          {
-            $set: {
-                exercies: req.body,
-            }
-          }
-          
-          );
+  // Grabs/creates ID to create the new workout
+  app.put("/api/workouts/:id", (req, res) => {
+        db.Workout.findByIdAndUpdate(
+            req.params.id,
+          { $push: { exercises: req.body } },
+          { new: true }
+        )
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+        console.log(dbWorkout);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
   });
 
   // All workouts in database for stats page
