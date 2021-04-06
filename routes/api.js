@@ -47,7 +47,16 @@ module.exports = (app) => {
       .catch((err) => {
         res.json(err);
       });
-  });
+  }); 
+//   app.post("/api/workouts/range", (req, res) => {
+//     db.Workout.create({})
+//       .then((dbWorkout) => {
+//         res.json(dbWorkout);
+//       })
+//       .catch((err) => {
+//         res.json(err);
+//       });
+//   });
 };
 
 // * View the combined weight of multiple exercises from the past seven workouts on the `stats` page.
