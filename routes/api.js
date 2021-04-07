@@ -15,9 +15,6 @@ module.exports = (app) => {
         .then((dbWorkout) => {
           res.json(dbWorkout);
         })
-        .catch((err) => {
-          res.json(err);
-        });
     });
   });
 
@@ -40,9 +37,6 @@ module.exports = (app) => {
         res.json(dbWorkout);
         console.log(dbWorkout);
       })
-      .catch((err) => {
-        res.json(err);
-      });
   });
 
   // All workouts in database for stats page
@@ -59,9 +53,6 @@ module.exports = (app) => {
         .then((dbWorkout) => {
           res.json(dbWorkout);
         })
-        .catch((err) => {
-          res.json(err);
-        });
     });
   });
 };
