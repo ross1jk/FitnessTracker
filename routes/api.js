@@ -1,32 +1,26 @@
 const db = require("../models");
 
 module.exports = (app) => {
-
-  // should Add total duration 
-//   app.get("api/workouts", (req, res) => {
-//     db.Workout.aggregate([
-//         {
-//           $addFields: {
-//             totalDuration: { $sum: "$exercises.duration" },
-//           },
-//         },
-//       ])
-//       .then((dbWorkout) => {
-//           res.json(dbWorkout);
-//       })
-//   }); 
-
   // All Workouts - will render last workout on page
   app.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
+    db.Workout.aggregate([
+      {
+        $addFields: {
+          totalDuration: { $sum: "$exercises.duration" },
+        },
+      },
+    ]).then((dbWorkout) => {
+      res.json(dbWorkout);
+      db.Workout.find({})
+        .then((dbWorkout) => {
+          res.json(dbWorkout);
+        })
+        .catch((err) => {
+          res.json(err);
+        });
+    });
   });
-  
+
   // Creates Route
   app.post("/api/workouts", ({ body }, res) => {
     db.Workout.create(body).then((dbWorkout) => {
@@ -53,12 +47,21 @@ module.exports = (app) => {
 
   // All workouts in database for stats page
   app.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({})
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
+    db.Workout.aggregate([
+      {
+        $addFields: {
+          totalDuration: { $sum: "$exercises.duration" },
+        },
+      },
+    ]).then((dbWorkout) => {
+      res.json(dbWorkout);
+      db.Workout.find({})
+        .then((dbWorkout) => {
+          res.json(dbWorkout);
+        })
+        .catch((err) => {
+          res.json(err);
+        });
+    });
   });
 };
