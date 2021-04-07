@@ -1,6 +1,21 @@
 const db = require("../models");
 
 module.exports = (app) => {
+
+  // should Add total duration 
+//   app.get("api/workouts", (req, res) => {
+//     db.Workout.aggregate([
+//         {
+//           $addFields: {
+//             totalDuration: { $sum: "$exercises.duration" },
+//           },
+//         },
+//       ])
+//       .then((dbWorkout) => {
+//           res.json(dbWorkout);
+//       })
+//   }); 
+
   // All Workouts - will render last workout on page
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
@@ -11,27 +26,14 @@ module.exports = (app) => {
         res.json(err);
       });
   });
-
+  
+  // Creates Route
   app.post("/api/workouts", ({ body }, res) => {
     db.Workout.create(body).then((dbWorkout) => {
       console.log(dbWorkout);
       res.json(dbWorkout);
     });
   });
-
-//   Sudo code for aggreate function
-//   app.put("api/workouts", (req, res) => {
-//     db.Workout.aggregate([
-//         {
-//           $addFields: {
-//             totalDuration: 9 //{ $sum: "$exercise.duration" },
-//           },
-//         },
-//       ])
-//       .then((dbWorkout) => {
-//           res.json(dbWorkout);
-//       })
-//   }); 
 
   // Grabs/creates ID to create the new workout
   app.put("/api/workouts/:id", (req, res) => {
