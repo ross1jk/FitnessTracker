@@ -18,7 +18,7 @@ FitnessTracker is an application that allows users to view and track daily worko
   
 ## Deployed_Application
 
-To access this deployed application, visit the following link: [Fitness TrackerApplication]()
+To access this deployed application, visit the following link: [Fitness TrackerApplication](https://fitnesstrackerjr.herokuapp.com/)
 
 ## Usage
 
