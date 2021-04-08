@@ -37,9 +37,6 @@ module.exports = (app) => {
         res.json(dbWorkout);
         console.log(dbWorkout);
       })
-      .catch((err) => {
-        res.json(err);
-      });
   });
 
   // All workouts in database for stats page
